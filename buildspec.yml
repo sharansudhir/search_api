@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Docker Hub...
+      - docker login -u akash80e -p group1220@
+  build:
+    commands:
+      - docker build -f Dockerfile -t search_api:latest .
+      - docker tag search_api:latest akash80e/back_up:search_api
+  post_build:
+    commands:
+      - docker push akash80e/back_up:search_api
+artifacts:
+  files:
+    - Dockerrun.aws.json
